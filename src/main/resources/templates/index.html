@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+hien len đi con cho
+<table id = "products">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Edit</th>
+        <th>Delete</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${list}">
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.price}"></td>
+        <td><a th:href="@{'/products/edit/' + ${item.id}}">Edit</a></td>
+        <td><a th:href="@{'/products/delete/' + ${item.id}}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

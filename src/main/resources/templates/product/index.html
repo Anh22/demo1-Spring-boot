@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <h1 th:text="${x}">Product List </h1>
+<h2>Tìm kiếm theo tên</h2>
+<form action="/products/search" method="get">
+    <input type="text" name="name" th:value="${searchTerm}" placeholder="Search by name">
+    <button type="submit">Search</button>
+    <a href="/products">Product List</a>
+</form>
+
+ <h2>Tìm kiếm theo giá</h2>
+<form action="/products/searchPrice" method="get">
+    <input type="text" name="minSalary" placeholder="Min Salary" th:value="${searchTerm}">
+    <input type="text" name="maxSalary" placeholder="Max Salary" th:value="${searchTerm}">
+    <button type="submit">Search</button>
+</form>
+<div>
+    <a th:href="@{'/products/sort'}">Sort by Price</a>
+</div>
+<a href="/products/create">Create new Product</a>
+<table id = "products">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Edit</th>
+        <th>Delete</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${list}">
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.price}"></td>
+        <td><a th:href="@{'/products/edit/' + ${item.id}}">Edit</a></td>
+        <td><a th:href="@{'/products/delete/' + ${item.id}}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<p th:if="${searchTerm}" th:text="'Search results for: ' + ${searchTerm}"></p>
+
+
+</body>
+</html>
